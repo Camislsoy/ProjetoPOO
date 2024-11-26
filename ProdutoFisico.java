@@ -1,18 +1,28 @@
 package Produtos;
 
 public class ProdutoFisico extends Produto {
-    public ProdutoFisico(int codigo, String nome, double preco, int quantidade) {
-        super(codigo, nome, preco, quantidade);
+    private int quantidadeEstoque;
+
+    public ProdutoFisico(int id, String nome, double preco, int quantidadeEstoque) {
+        super(id, nome, preco);
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+
+    public void reduzirEstoque(int quantidade) {
+        if (quantidade <= quantidadeEstoque) {
+            quantidadeEstoque -= quantidade;
+        } else {
+            System.out.println("Estoque insuficiente para o produto: " + getNome());
+        }
     }
 
     @Override
-    public double calcularValorTotal() {
-        return getPreco() * getQuantidade();
-    }
-
-    @Override
-    public String apresentar() {
-        return "Produto Físico - Código: " + getCodigo() + ", Nome: " + getNome() +
-                ", Preço: R$ " + getPreco() + ", Quantidade: " + getQuantidade();
+    public String toString() {
+        return super.toString() + ", Estoque: " + quantidadeEstoque;
     }
 }
+

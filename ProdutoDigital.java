@@ -1,25 +1,29 @@
 package Produtos;
 
 public class ProdutoDigital extends Produto {
-    private double taxaDownload;
+    private int licencasDisponiveis;
+    private double custoProducao;
 
-    public ProdutoDigital(int codigo, String nome, double preco, int quantidade, double taxaDownload) {
-        super(codigo, nome, preco, quantidade);
-        this.taxaDownload = taxaDownload;
+    public ProdutoDigital(int id, String nome, double preco, int licencasDisponiveis, double custoProducao) {
+        super(id, nome, preco);
+        this.licencasDisponiveis = licencasDisponiveis;
+        this.custoProducao = custoProducao;
     }
 
-    public double getTaxaDownload() { return taxaDownload; }
-    public void setTaxaDownload(double taxaDownload) { this.taxaDownload = taxaDownload; }
+    public int getLicencasDisponiveis() {
+        return licencasDisponiveis;
+    }
 
-    @Override
-    public double calcularValorTotal() {
-        return (getPreco() + taxaDownload) * getQuantidade();
+    public void reduzirLicencas(int quantidade) {
+        if (quantidade <= licencasDisponiveis) {
+            licencasDisponiveis -= quantidade;
+        } else {
+            System.out.println("Licenças insuficientes para o produto: " + getNome());
+        }
     }
 
     @Override
-    public String apresentar() {
-        return "Produto Digital - Código: " + getCodigo() + ", Nome: " + getNome() +
-                ", Preço: R$ " + getPreco() + ", Taxa de Download: R$ " + taxaDownload +
-                ", Quantidade: " + getQuantidade();
+    public String toString() {
+        return super.toString() + ", Licenças disponíveis: " + licencasDisponiveis + ", Custo de produção: " + custoProducao;
     }
 }
