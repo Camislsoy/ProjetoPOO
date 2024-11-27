@@ -6,17 +6,17 @@ public class Principal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Entrada de dados para categorias
-        System.out.print("Digite o ID da categoria 1: ");
+        // Entrada de dados para categorias de produtos equipamentos eletronicos ou software
+        System.out.print("Digite o ID da categoria do produto 1: ");
         int idCategoria1 = scanner.nextInt();
         scanner.nextLine();
-        System.out.print("Digite o nome da categoria 1: ");
+        System.out.print("Digite o nome da categoria  do produto 1: ");
         String nomeCategoria1 = scanner.nextLine();
 
-        System.out.print("Digite o ID da categoria 2: ");
+        System.out.print("Digite o ID da categoria  do produto 2: ");
         int idCategoria2 = scanner.nextInt();
         scanner.nextLine();
-        System.out.print("Digite o nome da categoria 2: ");
+        System.out.print("Digite o nome da categoria  do produto 2: ");
         String nomeCategoria2 = scanner.nextLine();
 
         Categoria eletronicos = new Categoria(idCategoria1, nomeCategoria1);

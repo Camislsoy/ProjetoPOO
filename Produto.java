@@ -1,12 +1,14 @@
 package Produtos;
 
+import java.util.Scanner;
+
 public abstract class Produto {
     private int codigo;
     private String nome;
     private double preco;
     private int quantidade;
 
-    // Construtor
+    // Construtores
     public Produto(int codigo, String nome, double preco, int quantidade) {
         this.codigo = codigo;
         this.nome = nome;
@@ -14,7 +16,9 @@ public abstract class Produto {
         this.quantidade = quantidade;
     }
 
+    // Construtor com quantidade padrão
     public Produto(int codigo, String nome, double preco) {
+        this(codigo, nome, preco, 0);
     }
 
     // Getters e setters
@@ -63,5 +67,26 @@ public abstract class Produto {
                 ", preco=" + preco +
                 ", quantidade=" + quantidade +
                 '}';
+    }
+
+    // Método estático para criar um produto físico ou digital
+    public static Produto criarProduto(Scanner scanner, boolean isDigital) {
+        System.out.print("Digite o código do produto: ");
+        int codigo = scanner.nextInt();
+        scanner.nextLine(); // Consumir a quebra de linha
+        System.out.print("Digite o nome do produto: ");
+        String nome = scanner.nextLine();
+        System.out.print("Digite o preço do produto: ");
+        double preco = scanner.nextDouble();
+        System.out.print("Digite a quantidade do produto em estoque: ");
+        int quantidade = scanner.nextInt();
+
+        if (isDigital) {
+            System.out.print("Digite a quantidade virtual (licenças ou downloads): ");
+            double quantidadeDigital = scanner.nextDouble();
+            return new ProdutoDigital(codigo, nome, preco, quantidade, quantidadeDigital);
+        } else {
+            return new ProdutoFisico(codigo, nome, preco, quantidade);
+        }
     }
 }
